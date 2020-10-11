@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { RepairNoteService } from '../repair-note.service';
+import { RepairNote } from '../models/repair-note';
 
 @Component({
   selector: 'rnt-search',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repair-note-search.component.scss']
 })
 export class RepairNoteSearchComponent implements OnInit {
+  @Output() repairNoteFound = new EventEmitter<RepairNote>();
+  @Output() repairNoteNotFound = new EventEmitter<RepairNote>();
 
-  constructor() { }
+  constructor(private repairNoteService: RepairNoteService) { }
 
   ngOnInit(): void {
   }
 
+  onKeyUp(value: string): void {
+
+  }
+
+  onSearch(value: string): void {
+
+  }
 }

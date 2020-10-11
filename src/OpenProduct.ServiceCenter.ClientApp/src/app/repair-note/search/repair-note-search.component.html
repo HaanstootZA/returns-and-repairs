@@ -1,11 +1,5 @@
-<div id="search-component">
-    <h4><label for="search-box">Search Repair Note</label></h4>
-  
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-  
-    <ul class="search-result">
-      <li *ngFor="let hero of heroes$ | async" >
-        <a routerLink="/detail/{{hero.id}}">{{hero.name}}</a>
-      </li>
-    </ul>
-  </div>
+<div class="search">
+    <input #search type="text" class="search" placeholder="Repair Note Id" (keyup)="onKeyUp(search.value)"
+        (keyup.enter)="onSearch(search.value)" />
+    <button type="submit" class="search" onclick="onSearch(search.value)">Search</button>
+</div>

@@ -1,17 +1,16 @@
-<h2>Dashboard</h2>
 <nav>
-    <a routerLink="/capture" routerLinkActive="activebutton">Capture Repair Note</a>
-    <a routerLink="/view" routerLinkActive="activebutton">View Repair Note</a>
+    <a routerLink="/repair-note/capture" routerLinkActive="activebutton">Capture Repair Note</a>
+    <a routerLink="/repair-note/details" routerLinkActive="activebutton">View Repair Note</a>
+    <rnt-search></rnt-search>
 </nav>
-<rnt-search></rnt-search>
 
-<ul class="repair-note dashboard">
-    <li *ngFor="let stat for dashboardStats.statsCollection | keyvalue">
+<ul class="statistics">
+    <li *ngFor="let stat for dashboardStats.statsCollection | keyvalue" class="statistic">
         <span>{{stat.key}}</span> {{stat.value}}
     </li>
 </ul>
 
-<div *ngIf="">
-    <rnt-repair-note ></rnt-repair-note>
+<div *ngIf="(displayRepairNote)">
+    <rnt-repair-note [repairNote]="selectedRepairNote"></rnt-repair-note>
 </div>
 

@@ -11,16 +11,17 @@ import { RepairNoteSearchComponent } from './search/repair-note-search.component
 
 
 @NgModule({
+  declarations: [
+    RepairNoteDashboardComponent,
+    RepairNoteDetailComponent,
+    RepairNoteCaptureComponent,
+    RepairNoteSearchComponent
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
   ],
   exports: [
-    RepairNoteDashboardComponent,
-    RepairNoteDetailComponent,
-    RepairNoteCaptureComponent
-  ],
-  declarations: [
     RepairNoteDashboardComponent,
     RepairNoteDetailComponent,
     RepairNoteCaptureComponent,
