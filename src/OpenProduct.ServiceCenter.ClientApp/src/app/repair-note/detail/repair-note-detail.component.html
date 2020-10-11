@@ -1,0 +1,15 @@
+<h2>View Repair Note</h2>
+<div class="repair-note detail">
+    <div class="repair-note detail id"><span>Id: </span>{{repairNote.id}}</div>
+    <div class="repair-note detail capturer"><span>Capturer: </span>{{repairNote.capturer}}</div>
+    <div class="repair-note detail lines">
+        <h3>Repair Note Lines</h3>
+        <ul>
+            <li *ngFor="let line of repairNote.lines" (click)="selectLine(line)"
+                [class.selected]="line === selectedLine">
+                <div class="repair-note detail line-part number"><span>Part Number: </span>{{line.partNumber}}</div>
+                <div class="repair-note detail line-part quantity"><span>Quantity: </span>{{line.quantity}}</div>
+            </li>
+        </ul>
+    </div>
+</div>
