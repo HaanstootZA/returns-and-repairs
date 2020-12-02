@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Logger } from 'src/app/core/logger.service';
 
 import { RepairNote } from '../models/repair-note';
 import { RepairNoteLine } from '../models/repair-note-line';
