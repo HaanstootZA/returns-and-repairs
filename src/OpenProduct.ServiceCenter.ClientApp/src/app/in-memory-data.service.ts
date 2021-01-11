@@ -18,7 +18,7 @@ export class InMemoryDataService implements InMemoryDbService {
     },
     { id: 'RNT002', capturer: 'Charles Xavier', lines: [{ partNumber: 'XMNSTRM', quantity: 2 }] },
     { id: 'RNT003', capturer: 'Wolverine', lines: [{ partNumber: 'XMNPHNX', quantity: 200 }] },
-    { id: 'RNT004', capturer: 'Charles Xavier', lines: [{ partNumber: 'XMNGMBT', quantity: 7 }] }]);
+    { id: 'RNT004', capturer: 'Neo', lines: [{ partNumber: 'XMNGMBT', quantity: 7 }] }]);
   }
 
   genId(repairNotes: RepairNote[]): string {
