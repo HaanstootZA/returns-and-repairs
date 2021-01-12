@@ -1,0 +1,16 @@
+<nav>
+    <a routerLink="/repair-note/capture" routerLinkActive="activebutton">Capture Repair Note</a>
+    <a routerLink="/repair-note/details" routerLinkActive="activebutton">View Repair Note</a>
+    <rnt-search></rnt-search>
+</nav>
+
+<ul class="statistics">
+    <li *ngFor="let stat for dashboardStats.statsCollection | keyvalue" class="statistic">
+        <span>{{stat.key}}</span> {{stat.value}}
+    </li>
+</ul>
+
+<div *ngIf="(displayRepairNote)">
+    <rnt-repair-note [repairNote]="selectedRepairNote"></rnt-repair-note>
+</div>
+

@@ -1,0 +1,5 @@
+<div class="search">
+    <input #search type="text" class="search" placeholder="Repair Note Id" (keyup)="onKeyUp(search.value)"
+        (keyup.enter)="onSearch(search.value)" />
+    <button type="submit" class="search" onclick="onSearch(search.value)">Search</button>
+</div>
