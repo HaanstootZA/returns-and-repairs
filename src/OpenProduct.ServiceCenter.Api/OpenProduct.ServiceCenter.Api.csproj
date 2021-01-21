@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>93aa017e-d02b-4f9e-8d44-24e9e90996e1</UserSecretsId>
@@ -10,5 +9,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
-
+  <ItemGroup>
+    <ProjectReference Include="..\OpenProduct.ServiceCenter.Core\OpenProduct.ServiceCenter.Core.csproj" />
+    <ProjectReference Include="..\OpenProduct.ServiceCenter.DataRepository\OpenProduct.ServiceCenter.DataRepository.csproj" />
+  </ItemGroup>
 </Project>

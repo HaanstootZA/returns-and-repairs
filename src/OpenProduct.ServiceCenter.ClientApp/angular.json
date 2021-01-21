@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "returns-and-repairs"
+    }
+  },
+  "defaultProject": "returns-and-repairs",
+  "cli": {
+    "analytics": false
+  }
 }

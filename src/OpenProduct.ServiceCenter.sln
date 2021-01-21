@@ -7,7 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenProduct.ServiceCenter.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenProduct.ServiceCenter.Core", "OpenProduct.ServiceCenter.Core\OpenProduct.ServiceCenter.Core.csproj", "{075FC145-0A6F-45BE-A4BF-A6148EC60F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenProduct.ServiceCenter.Api", "OpenProduct.ServiceCenter.Api\OpenProduct.ServiceCenter.Api.csproj", "{2567676A-343C-4AD1-B22A-CEE6FE8BA69C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenProduct.ServiceCenter.Api", "OpenProduct.ServiceCenter.Api\OpenProduct.ServiceCenter.Api.csproj", "{2567676A-343C-4AD1-B22A-CEE6FE8BA69C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenProduct.ServiceCenter.Api.BehaviourTests", "..\tests\BehaviourTests\OpenProduct.ServiceCenter.Api.BehaviourTests\OpenProduct.ServiceCenter.Api.BehaviourTests.csproj", "{DF486000-EF51-465F-9EF7-D38936D897FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E45F5FAD-9784-4666-9491-6F189BF63B57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{D9DBEF0F-1922-4557-A4C8-016E854F9F94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenProduct.ServiceCenter.Api.UnitTests", "..\tests\UnitTests\OpenProduct.ServiceCenter.Api.UnitTests\OpenProduct.ServiceCenter.Api.UnitTests.csproj", "{5EE9724C-114D-4ED6-A190-5A093BEFF399}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Behaviour", "Behaviour", "{1F5EA2B6-A946-44C8-8BDE-57899BE0564A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenProduct.ServiceCenter.DataRepository.UnitTests", "..\tests\UnitTests\OpenProduct.ServiceCenter.DataRepository.UnitTests\OpenProduct.ServiceCenter.DataRepository.UnitTests.csproj", "{C058F905-7C72-4B69-8091-E8BF21D7E29F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +39,28 @@ Global
 		{2567676A-343C-4AD1-B22A-CEE6FE8BA69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2567676A-343C-4AD1-B22A-CEE6FE8BA69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2567676A-343C-4AD1-B22A-CEE6FE8BA69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF486000-EF51-465F-9EF7-D38936D897FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF486000-EF51-465F-9EF7-D38936D897FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF486000-EF51-465F-9EF7-D38936D897FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF486000-EF51-465F-9EF7-D38936D897FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE9724C-114D-4ED6-A190-5A093BEFF399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE9724C-114D-4ED6-A190-5A093BEFF399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE9724C-114D-4ED6-A190-5A093BEFF399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE9724C-114D-4ED6-A190-5A093BEFF399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C058F905-7C72-4B69-8091-E8BF21D7E29F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C058F905-7C72-4B69-8091-E8BF21D7E29F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C058F905-7C72-4B69-8091-E8BF21D7E29F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C058F905-7C72-4B69-8091-E8BF21D7E29F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF486000-EF51-465F-9EF7-D38936D897FB} = {1F5EA2B6-A946-44C8-8BDE-57899BE0564A}
+		{D9DBEF0F-1922-4557-A4C8-016E854F9F94} = {E45F5FAD-9784-4666-9491-6F189BF63B57}
+		{5EE9724C-114D-4ED6-A190-5A093BEFF399} = {D9DBEF0F-1922-4557-A4C8-016E854F9F94}
+		{1F5EA2B6-A946-44C8-8BDE-57899BE0564A} = {E45F5FAD-9784-4666-9491-6F189BF63B57}
+		{C058F905-7C72-4B69-8091-E8BF21D7E29F} = {D9DBEF0F-1922-4557-A4C8-016E854F9F94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A24A0F12-E6D6-4D31-8B15-6F00C581F2D2}
