@@ -48,8 +48,8 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "RepairNotes", "\t As a service center employee to view existing repair notes I would like to be a" +
-                    "ble to retrieve a list of repair notes", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "RepairNotes", "\t As a service center employee to to support clients I need to interact with repa" +
+                    "ir notes", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -93,15 +93,15 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Retrieve a list of existing repair notes")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Retrieve a list of the most recent repair notes")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RepairNotes")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ViewRepairNotes")]
-        public virtual void RetrieveAListOfExistingRepairNotes()
+        public virtual void RetrieveAListOfTheMostRecentRepairNotes()
         {
             string[] tagsOfScenario = new string[] {
                     "ViewRepairNotes"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieve a list of existing repair notes", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Retrieve a list of the most recent repair notes", null, tagsOfScenario, argumentsOfScenario);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -123,10 +123,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("A connection an API connectiong", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("A connection to the service center API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("I call the Repair Notes Controller GET function", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I make a GET request to the Repair Notes Controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
  testRunner.Then("the API should return a list of existing repair notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
