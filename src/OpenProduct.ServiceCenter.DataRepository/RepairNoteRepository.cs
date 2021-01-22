@@ -15,7 +15,7 @@ namespace OpenProduct.ServiceCenter.DataRepository
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public IEnumerable<RepairNote> GetRepairNotes()
+        public IEnumerable<RepairNote> GetMostRecent()
         {
             return new List<RepairNote>() { new RepairNote() };
         }

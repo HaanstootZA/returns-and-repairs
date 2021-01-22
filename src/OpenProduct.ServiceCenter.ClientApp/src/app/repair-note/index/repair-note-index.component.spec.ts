@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import { RepairNoteIndexComponent } from './repair-note-index.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('RepairNoteIndexComponent', () => {
+  let component: RepairNoteIndexComponent;
+  let fixture: ComponentFixture<RepairNoteIndexComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ RepairNoteIndexComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(RepairNoteIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

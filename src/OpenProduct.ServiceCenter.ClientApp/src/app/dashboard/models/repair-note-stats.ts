@@ -1,4 +1,4 @@
-export interface RepairNoteDashboardStats {
+export interface RepairNoteStats {
     statsCollection: Map<string, number>;
     // created: number;
     // awaitingAssessment: number;

@@ -5,6 +5,6 @@ namespace OpenProduct.ServiceCenter.DataRepository
 {
     public interface IRepairNoteRepository
     {
-        IEnumerable<RepairNote> GetRepairNotes();
+        IEnumerable<RepairNote> GetMostRecent();
     }
 }

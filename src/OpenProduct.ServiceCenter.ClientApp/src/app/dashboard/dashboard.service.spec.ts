@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { RepairNoteDashboardStats } from './models/repair-note-dashboard-stats';
+import { RepairNoteStats } from './models/repair-note-stats';
 import { DashboardService } from './dashboard.service';
 
 describe('DashboardserviceService', () => {
@@ -21,12 +21,12 @@ describe('DashboardserviceService', () => {
     expect(testService).toBeTruthy();
   });
 
-  function getLoadDashboardStatsWrapper(): TestRequest {
-    return httpTestingController.expectOne({ method: 'GET', url: 'api/repairNotes/dashboard' });
+  function getloadDashboardStatisticsWrapper(): TestRequest {
+    return httpTestingController.expectOne({ method: 'GET', url: 'api/dashboard/repairndotes' });
   }
 
-  it('loadDashboardStats should return a list of stats', () => {
-    const expectedStats: RepairNoteDashboardStats = {
+  it('loadDashboardStatistics should return a list of stats', () => {
+    const expectedStats: RepairNoteStats = {
       statsCollection: new Map<string, number>([
         ['open notes', 8],
         ['awaiting technician assessment', 3],
@@ -34,15 +34,15 @@ describe('DashboardserviceService', () => {
         ['completed note', 5]
       ])
     };
-    testService.loadDashboardStats().subscribe(
+    testService.loadDashboardStatistics().subscribe(
       (actualResult) => expect(actualResult).toEqual(expectedStats),
       () => fail(),
       () => { });
 
-    getLoadDashboardStatsWrapper().flush(expectedStats);
+    getloadDashboardStatisticsWrapper().flush(expectedStats);
   });
 
-  it('loadDashboardStats should log on error', () => {
+  it('loadDashboardStatistics should log on error', () => {
     const errorEvent = {
       colno: 0,
       error: 'EXPECTED ERROR',
@@ -51,11 +51,11 @@ describe('DashboardserviceService', () => {
       message: 'IGNORE THJIS IT\'s A TEST'
     } as ErrorEvent;
 
-    testService.loadDashboardStats().subscribe(
+    testService.loadDashboardStatistics().subscribe(
       () => fail(),
       () => expect().nothing(),
       () => fail());
 
-    getLoadDashboardStatsWrapper().error(errorEvent);
+    getloadDashboardStatisticsWrapper().error(errorEvent);
   });
 });

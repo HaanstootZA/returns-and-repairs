@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Logger } from 'src/app/core/logger.service';
 
 import { RepairNote } from '../models/repair-note';
@@ -19,6 +19,7 @@ export class RepairNoteDetailComponent implements OnInit {
   public selectedLine: RepairNoteLine | null;
 
   constructor(
+    private logger: Logger,
     private route: ActivatedRoute,
     private repairNoteService: RepairNoteService
   ) {

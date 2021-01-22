@@ -36,7 +36,7 @@ namespace OpenProduct.ServiceCenter.Api.UnitTests.Controllers
         }
 
         [TestMethod]
-        public void TestGetRepairNotes()
+        public void TestGetMostRecent()
         {
             List<RepairNote> expectedRepairNotes = new List<RepairNote>
             {
@@ -45,12 +45,12 @@ namespace OpenProduct.ServiceCenter.Api.UnitTests.Controllers
 
             Mock<IRepairNoteRepository> repairNoteRepositoryMock = new Mock<IRepairNoteRepository>();
             repairNoteRepositoryMock
-                .Setup(r => r.GetRepairNotes())
+                .Setup(r => r.GetMostRecent())
                 .Returns(expectedRepairNotes)
                 .Verifiable();
 
             RepairNotesController testController = new RepairNotesController(Mock.Of<ILogger<RepairNotesController>>(), repairNoteRepositoryMock.Object);
-            ActionResult<IEnumerable<RepairNote>> actualRepairNotesResult = testController.GetRepairNotes();
+            ActionResult<IEnumerable<RepairNote>> actualRepairNotesResult = testController.GetMostRecent();
 
             repairNoteRepositoryMock.Verify();
 

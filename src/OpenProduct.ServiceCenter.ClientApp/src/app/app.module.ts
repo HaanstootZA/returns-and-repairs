@@ -10,13 +10,12 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { RepairNotesModule } from './repair-note/repair-note.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
-    DashboardComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       InMemoryDataService, { dataEncapsulation: false }
     ),
     AppRoutingModule,
-    RepairNotesModule
+    RepairNotesModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

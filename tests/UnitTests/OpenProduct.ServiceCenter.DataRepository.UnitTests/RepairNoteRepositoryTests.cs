@@ -22,10 +22,10 @@ namespace OpenProduct.ServiceCenter.DataRepository.UnitTests
         }
 
         [TestMethod]
-        public void TestGetRepairNotes()
+        public void TestGetMostRecent()
         {
             RepairNoteRepository testRepairNoteRepository = new RepairNoteRepository(Mock.Of<ILogger<RepairNoteRepository>>());
-            Assert.IsNotNull(testRepairNoteRepository.GetRepairNotes());
+            Assert.IsNotNull(testRepairNoteRepository.GetMostRecent());
         }
     }
 }

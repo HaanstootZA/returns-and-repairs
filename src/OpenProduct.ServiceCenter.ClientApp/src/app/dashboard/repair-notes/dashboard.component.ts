@@ -1,17 +1,21 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 
-import { RepairNoteDashboardStats } from '../models/repair-note-dashboard-stats';
+import { RepairNoteStats } from '../models/repair-note-stats';
 import { DashboardService } from '../dashboard.service';
+import { Logger } from 'src/app/core/logger.service';
 
 @Component({
-  selector: 'rnt-dashboard',
+  selector: 'dbrd-repairnote',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class RepairNoteDashboardComponent implements OnInit {
-  @Input() public dashboardStats: RepairNoteDashboardStats;
+export class DashboardComponent implements OnInit {
+  @Input() public dashboardStats: RepairNoteStats;
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(
+    private logger: Logger,
+    private dashboardService: DashboardService
+  ) {
     this.dashboardStats = { statsCollection: new Map<string, number>() };
   }
 
@@ -20,6 +24,6 @@ export class RepairNoteDashboardComponent implements OnInit {
   }
 
   private loadStats(): void {
-    this.dashboardService.loadDashboardStats().subscribe((stats) => this.dashboardStats = stats);
+    this.dashboardService.loadDashboardStatistics().subscribe((stats) => this.dashboardStats = stats);
   }
 }

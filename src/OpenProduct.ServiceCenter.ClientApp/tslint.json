@@ -142,7 +142,8 @@
       "attribute",
       [
         "app",
-        "rnt"
+        "rnt",
+        "dbrd"
       ],
       "camelCase"
     ],
@@ -151,7 +152,8 @@
       "element",
       [
         "app",
-        "rnt"
+        "rnt",
+        "dbrd"
       ],
       "kebab-case"
     ]

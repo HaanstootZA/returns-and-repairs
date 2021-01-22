@@ -6,6 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RepairNoteDetailComponent } from './detail/repair-note-detail.component';
 import { RepairNoteCaptureComponent } from './capture/repair-note-capture.component';
 import { RepairNoteSearchComponent } from './search/repair-note-search.component';
+import { RepairNoteIndexComponent } from './index/repair-note-index.component';
 
 
 
@@ -13,7 +14,8 @@ import { RepairNoteSearchComponent } from './search/repair-note-search.component
   declarations: [
     RepairNoteDetailComponent,
     RepairNoteCaptureComponent,
-    RepairNoteSearchComponent
+    RepairNoteSearchComponent,
+    RepairNoteIndexComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { RepairNoteSearchComponent } from './search/repair-note-search.component
   exports: [
     RepairNoteDetailComponent,
     RepairNoteCaptureComponent,
-    RepairNoteSearchComponent
+    RepairNoteSearchComponent,
+    RepairNoteIndexComponent
   ]
 })
 export class RepairNotesModule { }

@@ -24,10 +24,10 @@ namespace OpenProduct.ServiceCenter.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<RepairNote>> GetRepairNotes()
+        public ActionResult<IEnumerable<RepairNote>> GetMostRecent()
         {
             this.logger.UnitOfWork("Finding a list of repair notes from the repository");
-            IEnumerable<RepairNote> result = repairNoteRepository.GetRepairNotes();
+            IEnumerable<RepairNote> result = repairNoteRepository.GetMostRecent();
 
             return Ok(result);
         }

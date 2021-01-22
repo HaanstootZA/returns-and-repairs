@@ -1,0 +1,15 @@
+<nav>
+    <a routerLink="/repair-note/capture" routerLinkActive="activebutton">Capture Repair Note</a>
+    <a routerLink="/repair-note/detail" routerLinkActive="activebutton">View Repair Note</a>
+    <a routerLink="/repair-note/search" routerLinkActive="activebutton">Search Repair Note</a>
+</nav>
+
+<ul class="preview">
+    <li *ngFor="let repairNote for repairNotes">
+        <span>{{repairNote.id}}</span> {{repairNote.capturer}}
+    </li>
+</ul>
+
+<div *ngIf="(displayRepairNote)">
+    <rnt-repair-note [repairNote]="selectedRepairNote"></rnt-repair-note>
+</div>

@@ -26,9 +26,9 @@ describe('RepairNoteService', () => {
     expect(testService).toBeTruthy();
   });
 
-  function getRepairNotesRequestWrapper(): TestRequest { return httpTestingController.expectOne({ method: 'GET', url: 'api/repairNotes' }) }
+  function getMostRecentRepairNotesRequestWrapper(): TestRequest { return httpTestingController.expectOne({ method: 'GET', url: 'api/repairNotes' }); }
 
-  it('getRepairNotes should return a list of repair notes', () => {
+  it('getMostRecenRepairNotes should return a list of repair notes', () => {
     const testRepairNotes: RepairNote[] = [{
       id: 'REP001',
       capturer: 'Test Çapturer',
@@ -48,20 +48,20 @@ describe('RepairNoteService', () => {
       }]
     }];
 
-    testSuccess(testService.getRepairNotes(), testRepairNotes, getRepairNotesRequestWrapper);
+    testSuccess(testService.getMostRecentRepairNotes(), testRepairNotes, getMostRecentRepairNotesRequestWrapper);
   });
 
-  it('getRepairNotes should return an empty list of repair notes', () => {
-    testSuccess(testService.getRepairNotes(), [] as RepairNote[], getRepairNotesRequestWrapper);
+  it('getMostRecentRepairNotes should return an empty list of repair notes', () => {
+    testSuccess(testService.getMostRecentRepairNotes(), [] as RepairNote[], getMostRecentRepairNotesRequestWrapper);
   });
 
-  it('getRepairNotes should log on error', () => {
-    testFailure(testService.getRepairNotes(), getRepairNotesRequestWrapper);
+  it('getMostRecentRepairNotes should log on error', () => {
+    testFailure(testService.getMostRecentRepairNotes(), getMostRecentRepairNotesRequestWrapper);
   });
 
   function getRepairNoteRequestWrapper(): TestRequest {
     return httpTestingController.expectOne((request) => {
-      return request.method === 'GET' && request.url === 'api/repairNotes' && request.params.has('id');
+      return request.method === 'GET' && request.url === 'api/repairNote' && request.params.has('id');
     });
   }
 
@@ -82,13 +82,11 @@ describe('RepairNoteService', () => {
     testFailure(testService.getRepairNote('DUMMY'), getRepairNoteRequestWrapper);
   });
 
-  function getSearchWrapper(searchType: string): TestRequest {
+  function getPreviewSearchWrapper(): TestRequest {
     return httpTestingController.expectOne((request) =>
       request.method === 'GET' &&
       request.url === 'api/repairNotes/search' &&
-      request.params.has('term') &&
-      request.params.has('type') &&
-      request.params.get('type') === searchType
+      request.params.has('term')
     );
   }
 
@@ -112,21 +110,29 @@ describe('RepairNoteService', () => {
       }]
     }];
 
-    testSuccess(testService.previewSearchRepairNote('REP'), expectedRepairNotes, () => getSearchWrapper('wildcard'));
+    testSuccess(testService.previewSearchRepairNote('REP'), expectedRepairNotes, () => getPreviewSearchWrapper());
   });
 
   it('previewSearchRepairNote should return an empty list', () => {
-    testSuccess(testService.previewSearchRepairNote('RAP'), [] as RepairNote[], () => getSearchWrapper('wildcard'));
+    testSuccess(testService.previewSearchRepairNote('RAP'), [] as RepairNote[], () => getPreviewSearchWrapper());
   });
 
   it('previewSearchRepairNote should return an empty list for a null result', () => {
-    testSuccess(testService.previewSearchRepairNote('RAP'), null, () => getSearchWrapper('wildcard'));
+    testSuccess(testService.previewSearchRepairNote('RAP'), null, () => getPreviewSearchWrapper());
   });
 
   it('previewSearchRepairNote should log on error', () => {
-    testFailure(testService.previewSearchRepairNote('EMPTY'), () => getSearchWrapper('wildcard'));
+    testFailure(testService.previewSearchRepairNote('EMPTY'), () => getPreviewSearchWrapper());
   });
 
+
+  function getSearchWrapper(): TestRequest {
+    return httpTestingController.expectOne((request) =>
+      request.method === 'GET' &&
+      request.url === 'api/repairNote/search' &&
+      request.params.has('term')
+    );
+  }
 
   it('searchRepairNote should return a list of repair note', () => {
     const expectedRepairNote: RepairNote = {
@@ -138,19 +144,19 @@ describe('RepairNoteService', () => {
       }]
     };
 
-    testSuccess(testService.searchRepairNote('REP'), expectedRepairNote, () => getSearchWrapper('exact'));
+    testSuccess(testService.searchRepairNote('REP'), expectedRepairNote, () => getSearchWrapper());
   });
 
   it('searchRepairNote should return a null result when status 404', () => {
-    testSuccess(testService.searchRepairNote('RAP'), null, () => getSearchWrapper('exact'));
+    testSuccess(testService.searchRepairNote('RAP'), null, () => getSearchWrapper());
   });
 
   it('searchRepairNote should return null result', () => {
-    testSuccess(testService.searchRepairNote('RAP'), null, () => getSearchWrapper('exact'));
+    testSuccess(testService.searchRepairNote('RAP'), null, () => getSearchWrapper());
   });
 
   it('searchRepairNote should log on error', () => {
-    testFailure(testService.searchRepairNote('EMPTY'), () => getSearchWrapper('exact'));
+    testFailure(testService.searchRepairNote('EMPTY'), () => getSearchWrapper());
   });
 
   function testSuccess<T>(result: Observable<T>, expectedResult: T, requestWrapper: (() => TestRequest)): void {
