@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from '../app-routing.module';
 
-import { RepairNoteDashboardComponent } from './dashboard/repair-note-dashboard.component';
 import { RepairNoteDetailComponent } from './detail/repair-note-detail.component';
 import { RepairNoteCaptureComponent } from './capture/repair-note-capture.component';
 import { RepairNoteSearchComponent } from './search/repair-note-search.component';
@@ -12,7 +11,6 @@ import { RepairNoteSearchComponent } from './search/repair-note-search.component
 
 @NgModule({
   declarations: [
-    RepairNoteDashboardComponent,
     RepairNoteDetailComponent,
     RepairNoteCaptureComponent,
     RepairNoteSearchComponent
@@ -22,7 +20,6 @@ import { RepairNoteSearchComponent } from './search/repair-note-search.component
     AppRoutingModule,
   ],
   exports: [
-    RepairNoteDashboardComponent,
     RepairNoteDetailComponent,
     RepairNoteCaptureComponent,
     RepairNoteSearchComponent

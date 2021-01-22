@@ -11,12 +11,12 @@ namespace OpenProduct.ServiceCenter.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RepairNoteController : ControllerBase
+    public class RepairNotesController : ControllerBase
     {
         private readonly IRepairNoteRepository repairNoteRepository;
-        private readonly ILogger<RepairNoteController> logger;
+        private readonly ILogger<RepairNotesController> logger;
 
-        public RepairNoteController(ILogger<RepairNoteController> logger, IRepairNoteRepository repairNoteRepository)
+        public RepairNotesController(ILogger<RepairNotesController> logger, IRepairNoteRepository repairNoteRepository)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.repairNoteRepository = repairNoteRepository ?? throw new ArgumentNullException(nameof(repairNoteRepository));

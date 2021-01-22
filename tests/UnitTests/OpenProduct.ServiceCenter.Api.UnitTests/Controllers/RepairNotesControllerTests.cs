@@ -18,21 +18,21 @@ namespace OpenProduct.ServiceCenter.Api.UnitTests.Controllers
         [TestMethod]
         public void TestConstructor()
         {
-            Assert.IsNotNull(new RepairNoteController(Mock.Of<ILogger<RepairNoteController>>(), Mock.Of<IRepairNoteRepository>()));
+            Assert.IsNotNull(new RepairNotesController(Mock.Of<ILogger<RepairNotesController>>(), Mock.Of<IRepairNoteRepository>()));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestConstructorLoggerArgumentNullException()
         {
-            Assert.IsNotNull(new RepairNoteController(null, Mock.Of<IRepairNoteRepository>()));
+            Assert.IsNotNull(new RepairNotesController(null, Mock.Of<IRepairNoteRepository>()));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestConstructorRepositoryArgumentNullException()
         {
-            Assert.IsNotNull(new RepairNoteController(Mock.Of<ILogger<RepairNoteController>>(), null));
+            Assert.IsNotNull(new RepairNotesController(Mock.Of<ILogger<RepairNotesController>>(), null));
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace OpenProduct.ServiceCenter.Api.UnitTests.Controllers
                 .Returns(expectedRepairNotes)
                 .Verifiable();
 
-            RepairNoteController testController = new RepairNoteController(Mock.Of<ILogger<RepairNoteController>>(), repairNoteRepositoryMock.Object);
+            RepairNotesController testController = new RepairNotesController(Mock.Of<ILogger<RepairNotesController>>(), repairNoteRepositoryMock.Object);
             ActionResult<IEnumerable<RepairNote>> actualRepairNotesResult = testController.GetRepairNotes();
 
             repairNoteRepositoryMock.Verify();

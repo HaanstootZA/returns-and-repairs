@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { Observable } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 
 import { RepairNoteService } from './repair-note.service';
 import { RepairNote } from './models/repair-note';
-import { Observable } from 'rxjs';
-import { RepairNoteDashboardStats } from './models/repair-note-dashboard-stats';
 
 describe('RepairNoteService', () => {
   let testService: RepairNoteService;
@@ -81,27 +80,6 @@ describe('RepairNoteService', () => {
 
   it('getRepairNote should log on error', () => {
     testFailure(testService.getRepairNote('DUMMY'), getRepairNoteRequestWrapper);
-  });
-
-  function getLoadDashboardStatsWrapper(): TestRequest {
-    return httpTestingController.expectOne({ method: 'GET', url: 'api/repairNotes/dashboard' });
-  }
-
-  it('loadDashboardStats should return a list of stats', () => {
-    const expectedStats: RepairNoteDashboardStats = {
-      statsCollection: new Map<string, number>([
-        ['open notes', 8],
-        ['awaiting technician assessment', 3],
-        ['awaiting client acceptance', 2],
-        ['completed note', 5]
-      ])
-    };
-
-    testSuccess(testService.loadDashboardStats(), expectedStats, getLoadDashboardStatsWrapper);
-  });
-
-  it('loadDashboardStats should log on error', () => {
-    testFailure(testService.loadDashboardStats(), getLoadDashboardStatsWrapper);
   });
 
   function getSearchWrapper(searchType: string): TestRequest {

@@ -22,7 +22,7 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Steps
         [When(@"I call the Repair Notes Controller GET function")]
         public void WhenICallTheRepairNotesControllerGETFunction()
         {
-            RestRequest restRequest = new RestRequest("api/RepairNote", Method.GET, DataFormat.Json);
+            RestRequest restRequest = new RestRequest("api/RepairNotes", Method.GET, DataFormat.Json);
             this.restResponse = restClient.Get<IEnumerable<RepairNote>>(restRequest);
         }
         

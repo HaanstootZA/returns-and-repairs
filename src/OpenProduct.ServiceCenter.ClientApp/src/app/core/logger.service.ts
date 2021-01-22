@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
+import { Observable, OperatorFunction } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +39,13 @@ export class Logger {
 
   public crash(message: string, error: Error): void {
 
+  }
+
+  public handleError<T>(operation = 'operation'): OperatorFunction<T, T> {
+    // tslint:disable-next-line: no-any
+    return (error: any): Observable<T> => {
+      this.resolveError(`${operation} failed: ${error.message}`, new Error(error));
+      return throwError('An error has occurred while trying to access an HTTP server');
+    };
   }
 }
