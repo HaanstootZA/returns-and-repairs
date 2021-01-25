@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Logger } from 'src/app/core/logger.service';
 
-import { RepairNote } from '../models/repair-note';
-import { RepairNoteLine } from '../models/repair-note-line';
+import { RepairNote, RepairNoteLine } from '../models/repair-note';
 import { RepairNoteService } from '../repair-note.service';
 
 @Component({

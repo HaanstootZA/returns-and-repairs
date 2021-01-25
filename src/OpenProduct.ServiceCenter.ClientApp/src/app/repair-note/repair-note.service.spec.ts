@@ -48,11 +48,15 @@ describe('RepairNoteService', () => {
       }]
     }];
 
-    testSuccess(testService.getMostRecentRepairNotes(), testRepairNotes, getMostRecentRepairNotesRequestWrapper);
+    testSuccess(testService.getMostRecentRepairNotes(), getMostRecentRepairNotesRequestWrapper, testRepairNotes);
   });
 
   it('getMostRecentRepairNotes should return an empty list of repair notes', () => {
-    testSuccess(testService.getMostRecentRepairNotes(), [] as RepairNote[], getMostRecentRepairNotesRequestWrapper);
+    testSuccess(testService.getMostRecentRepairNotes(), getMostRecentRepairNotesRequestWrapper, [] as RepairNote[]);
+  });
+
+  it('getMostRecentRepairNotes should return an empty list of repair notes', () => {
+    testSuccess(testService.getMostRecentRepairNotes(), getMostRecentRepairNotesRequestWrapper, [] as RepairNote[], null);
   });
 
   it('getMostRecentRepairNotes should log on error', () => {
@@ -75,7 +79,7 @@ describe('RepairNoteService', () => {
       }]
     };
 
-    testSuccess(testService.getRepairNote(testRepairNote.id), testRepairNote, getRepairNoteRequestWrapper);
+    testSuccess(testService.getRepairNote(testRepairNote.id), getRepairNoteRequestWrapper, testRepairNote);
   });
 
   it('getRepairNote should log on error', () => {
@@ -110,21 +114,20 @@ describe('RepairNoteService', () => {
       }]
     }];
 
-    testSuccess(testService.previewSearchRepairNote('REP'), expectedRepairNotes, () => getPreviewSearchWrapper());
+    testSuccess(testService.previewSearchRepairNote('REP'), () => getPreviewSearchWrapper(), expectedRepairNotes);
   });
 
   it('previewSearchRepairNote should return an empty list', () => {
-    testSuccess(testService.previewSearchRepairNote('RAP'), [] as RepairNote[], () => getPreviewSearchWrapper());
+    testSuccess(testService.previewSearchRepairNote('RAP'), () => getPreviewSearchWrapper(), [] as RepairNote[]);
   });
 
   it('previewSearchRepairNote should return an empty list for a null result', () => {
-    testSuccess(testService.previewSearchRepairNote('RAP'), null, () => getPreviewSearchWrapper());
+    testSuccess(testService.previewSearchRepairNote('RAP'), () => getPreviewSearchWrapper(), [] as RepairNote[], null);
   });
 
   it('previewSearchRepairNote should log on error', () => {
     testFailure(testService.previewSearchRepairNote('EMPTY'), () => getPreviewSearchWrapper());
   });
-
 
   function getSearchWrapper(): TestRequest {
     return httpTestingController.expectOne((request) =>
@@ -144,28 +147,28 @@ describe('RepairNoteService', () => {
       }]
     };
 
-    testSuccess(testService.searchRepairNote('REP'), expectedRepairNote, () => getSearchWrapper());
+    testSuccess(testService.searchRepairNote('REP'), () => getSearchWrapper(), expectedRepairNote);
   });
 
   it('searchRepairNote should return a null result when status 404', () => {
-    testSuccess(testService.searchRepairNote('RAP'), null, () => getSearchWrapper());
+    testSuccess(testService.searchRepairNote('RAP'), () => getSearchWrapper());
   });
 
   it('searchRepairNote should return null result', () => {
-    testSuccess(testService.searchRepairNote('RAP'), null, () => getSearchWrapper());
+    testSuccess(testService.searchRepairNote('RAP'), () => getSearchWrapper());
   });
 
   it('searchRepairNote should log on error', () => {
     testFailure(testService.searchRepairNote('EMPTY'), () => getSearchWrapper());
   });
 
-  function testSuccess<T>(result: Observable<T>, expectedResult: T, requestWrapper: (() => TestRequest)): void {
+  function testSuccess<T>(result: Observable<T>, requestWrapper: (() => TestRequest), expectedResult?: T, submitResult?: T): void {
     result.subscribe(
-      (actualResult) => expect(actualResult).toEqual(expectedResult),
+      (actualResult) => expectedResult ? expect(actualResult).toEqual(expectedResult) : expect(actualResult).toBeNull(),
       () => fail(),
       () => { });
 
-    requestWrapper().flush(expectedResult);
+    requestWrapper().flush(submitResult ?? expectedResult ?? null);
   }
 
   function testFailure<T>(result: Observable<T>, requestWrapper: (() => TestRequest)): void {

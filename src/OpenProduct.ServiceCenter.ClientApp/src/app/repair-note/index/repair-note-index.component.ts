@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RepairNoteService } from '../repair-note.service';
-import { RepairNote } from '../models/repair-note';
+import { RepairNote, RepairNoteLine } from '../models/repair-note';
+import { Logger } from 'src/app/core/logger.service';
 
 @Component({
   selector: 'rnt-index',
@@ -16,17 +17,17 @@ export class RepairNoteIndexComponent implements OnInit {
     lines: []
   };
 
-  constructor(private repairNoteService: RepairNoteService) { }
+  constructor(
+    private logger: Logger,
+    private repairNoteService: RepairNoteService) { }
 
   ngOnInit(): void {
     this.loadMostRecent();
   }
 
   private loadMostRecent(): void {
-    this.repairNotes = [];
-    if (this.repairNotes.length > 0) {
-      this.displayRepairNote = true;
-      this.selectedRepairNote = this.repairNotes[0];
-    }
+    this.repairNoteService
+    .getMostRecentRepairNotes()
+    .subscribe((result: RepairNote[]) => this.repairNotes = result);
   }
 }

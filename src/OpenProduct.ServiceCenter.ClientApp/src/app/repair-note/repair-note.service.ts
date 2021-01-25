@@ -1,8 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { ObservedValueOf, OperatorFunction } from 'rxjs/internal/types';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Logger } from '../core/logger.service';
 
 import { RepairNote } from './models/repair-note';
@@ -23,34 +22,46 @@ export class RepairNoteService {
 
 
   getRepairNote(id: string): Observable<RepairNote> {
+    this.logger.unitOfWork(`Find a repair note by id ${id}`);
+
     const params = new HttpParams().set('id', id);
     return this.http
       .get<RepairNote>(this.defaultUri, { params })
-      .pipe(catchError(this.logger.handleError<RepairNote>('getRepairNote')));
+      .pipe(
+        tap((result: RepairNote) => this.logger.debugResponse(result, this.defaultUri)),
+        catchError(this.logger.handleError<RepairNote>('getRepairNote')));
   }
 
   searchRepairNote(term: string): Observable<RepairNote | null> {
+    this.logger.unitOfWork(`Search for a repair note by id ${term}`);
     const params = new HttpParams().set('term', term);
 
-    //ADD A DELAY TO AVOID SEARCHING THE WHOLE TIME
     return this.http
       .get<RepairNote>(this.searchUri, { params })
-      .pipe(catchError(this.logger.handleError<RepairNote>('searchRepairNote')));
+      .pipe(
+        tap((result: RepairNote) => this.logger.debugResponse(result, this.searchUri)),
+        catchError(this.logger.handleError<RepairNote>('searchRepairNote')));
   }
 
   getMostRecentRepairNotes(): Observable<RepairNote[]> {
+    this.logger.unitOfWork('Get the most recent repair notes');
+
     return this.http
       .get<RepairNote[]>(this.mostRecentUri)
-      .pipe(catchError(this.logger.handleError<RepairNote[]>('getMostRecentRepairNotes')));
+      .pipe(
+        tap((result: RepairNote[]) => this.logger.debugResponse(result, this.mostRecentUri)),
+        catchError(this.logger.handleError<RepairNote[]>('getMostRecentRepairNotes')));
   }
 
   previewSearchRepairNote(term: string): Observable<RepairNote[]> {
-    const params = new HttpParams().set('term', term);
+    this.logger.unitOfWork(`Preview repair notes for id:${term}`);
 
-    //ADD A DELAY TO AVOID SEARCHING THE WHOLE TIME
+    const params = new HttpParams().set('term', term);
     return this.http
       .get<RepairNote[]>(this.previewSearchUri, { params })
-      .pipe((r) => r ?? [] as RepairNote[])
-      .pipe(catchError(this.logger.handleError<RepairNote[]>('previewSearchRepairNote')));
+      .pipe(
+        (r) => r ?? [] as RepairNote[],
+        tap((result: RepairNote[]) => this.logger.debugResponse(result, this.previewSearchUri)),
+        catchError(this.logger.handleError<RepairNote[]>('previewSearchRepairNote')));
   }
 }

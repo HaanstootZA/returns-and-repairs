@@ -25,6 +25,15 @@ export class Logger {
 
   }
 
+  public debugResponse<TResult>(result: TResult | TResult[], target: string): void {
+    if (result === null || (result instanceof Array && result.length === 0)) {
+      this.debug(`${target} returned no result`);
+      return;
+    }
+    
+    this.debug(`${target} returned successfuly`);
+  }
+
   public expectedError(message: string, error?: Error): void {
 
   }

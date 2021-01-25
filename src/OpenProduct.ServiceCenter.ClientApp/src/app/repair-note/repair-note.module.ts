@@ -8,8 +8,6 @@ import { RepairNoteCaptureComponent } from './capture/repair-note-capture.compon
 import { RepairNoteSearchComponent } from './search/repair-note-search.component';
 import { RepairNoteIndexComponent } from './index/repair-note-index.component';
 
-
-
 @NgModule({
   declarations: [
     RepairNoteDetailComponent,
