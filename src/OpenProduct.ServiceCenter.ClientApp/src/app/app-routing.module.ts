@@ -9,7 +9,7 @@ import { RepairNoteIndexComponent } from './repair-note/index/repair-note-index.
 import { RepairNoteSearchComponent } from './repair-note/search/repair-note-search.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: 'dashboard/repair-notes', pathMatch: 'full' },
+  { path: '',   redirectTo: 'repair-note/index', pathMatch: 'full' },
   { path: 'repair-note', redirectTo: 'repair-note/index', pathMatch: 'full' },
   { path: 'repair-note/detail', component: RepairNoteDetailComponent },
   { path: 'repair-note/capture', component: RepairNoteCaptureComponent },

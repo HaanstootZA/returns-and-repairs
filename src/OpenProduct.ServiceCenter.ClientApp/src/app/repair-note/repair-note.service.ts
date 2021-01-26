@@ -50,11 +50,10 @@ export class RepairNoteService {
   getMostRecentRepairNotes(): Observable<RepairNote[]> {
     this.logger.unitOfWork('Get the most recent repair notes');
 
-    return this.http
-      .get<RepairNote[]>(this.mostRecentUri)
-      .pipe(
-        tap((result: RepairNote[]) => this.logger.debugResponse(result, this.mostRecentUri)),
-        catchError(this.logger.handleError<RepairNote[]>('getMostRecentRepairNotes')));
+    return this.http.get<RepairNote[]>(this.mostRecentUri);
+      // .pipe(
+      //   tap((result: RepairNote[]) => this.logger.debugResponse(result, this.mostRecentUri)),
+      //   catchError(this.logger.handleError<RepairNote[]>('getMostRecentRepairNotes')));
   }
 
   previewSearchRepairNote(term: string): Observable<RepairNote[]> {

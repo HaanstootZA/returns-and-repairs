@@ -304,14 +304,14 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjecto
             _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
             angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_2__["HttpClientInMemoryWebApiModule"].forRoot(_in_memory_data_service__WEBPACK_IMPORTED_MODULE_3__["InMemoryDataService"], { dataEncapsulation: false }),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
-            _repair_note_repair_note_module__WEBPACK_IMPORTED_MODULE_7__["RepairNotesModule"],
+            _repair_note_repair_note_module__WEBPACK_IMPORTED_MODULE_7__["RepairNoteModule"],
             _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_9__["DashboardModule"]
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
         _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_8__["PageNotFoundComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _core_core_module__WEBPACK_IMPORTED_MODULE_6__["CoreModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"], angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_2__["HttpClientInMemoryWebApiModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
-        _repair_note_repair_note_module__WEBPACK_IMPORTED_MODULE_7__["RepairNotesModule"],
+        _repair_note_repair_note_module__WEBPACK_IMPORTED_MODULE_7__["RepairNoteModule"],
         _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_9__["DashboardModule"]] }); })();
 
 
@@ -321,12 +321,12 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjecto
 /*!***************************************************!*\
   !*** ./src/app/repair-note/repair-note.module.ts ***!
   \***************************************************/
-/*! exports provided: RepairNotesModule */
+/*! exports provided: RepairNoteModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RepairNotesModule", function() { return RepairNotesModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RepairNoteModule", function() { return RepairNoteModule; });
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app-routing.module */ "vY5A");
 /* harmony import */ var _detail_repair_note_detail_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./detail/repair-note-detail.component */ "jtXq");
@@ -341,14 +341,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class RepairNotesModule {
+class RepairNoteModule {
 }
-RepairNotesModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineNgModule"]({ type: RepairNotesModule });
-RepairNotesModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector"]({ factory: function RepairNotesModule_Factory(t) { return new (t || RepairNotesModule)(); }, imports: [[
+RepairNoteModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineNgModule"]({ type: RepairNoteModule });
+RepairNoteModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector"]({ factory: function RepairNoteModule_Factory(t) { return new (t || RepairNoteModule)(); }, imports: [[
             _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_1__["AppRoutingModule"],
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsetNgModuleScope"](RepairNotesModule, { declarations: [_detail_repair_note_detail_component__WEBPACK_IMPORTED_MODULE_2__["RepairNoteDetailComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsetNgModuleScope"](RepairNoteModule, { declarations: [_detail_repair_note_detail_component__WEBPACK_IMPORTED_MODULE_2__["RepairNoteDetailComponent"],
         _capture_repair_note_capture_component__WEBPACK_IMPORTED_MODULE_3__["RepairNoteCaptureComponent"],
         _search_repair_note_search_component__WEBPACK_IMPORTED_MODULE_4__["RepairNoteSearchComponent"],
         _index_repair_note_index_component__WEBPACK_IMPORTED_MODULE_5__["RepairNoteIndexComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],

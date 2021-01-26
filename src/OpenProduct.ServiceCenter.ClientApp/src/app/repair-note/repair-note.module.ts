@@ -26,4 +26,4 @@ import { RepairNoteIndexComponent } from './index/repair-note-index.component';
     RepairNoteIndexComponent
   ]
 })
-export class RepairNotesModule { }
+export class RepairNoteModule { }
