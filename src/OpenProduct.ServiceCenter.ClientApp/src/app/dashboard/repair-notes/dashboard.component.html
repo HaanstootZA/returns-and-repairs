@@ -1,6 +1,6 @@
 
 <ul class="statistics">
-    <li *ngFor="let stat for dashboardStats.statsCollection | keyvalue" class="statistic">
+    <li *ngFor="let stat of dashboardStats.statsCollection | keyvalue" class="statistic">
         <span>{{stat.key}}</span> {{stat.value}}
     </li>
 </ul>

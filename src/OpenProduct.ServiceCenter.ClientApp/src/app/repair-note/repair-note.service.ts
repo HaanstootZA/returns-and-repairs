@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Logger } from '../core/logger.service';
 
 import { RepairNote } from './models/repair-note';
@@ -9,12 +9,12 @@ import { RepairNote } from './models/repair-note';
 @Injectable({
   providedIn: 'root'
 })
-
 export class RepairNoteService {
   private defaultUri = 'api/repairNote';
-  private searchUri = 'api/repairNote/search';
-  private mostRecentUri = 'api/repairNotes';
-  private previewSearchUri = 'api/repairNotes/search';
+  private searchUri = `${this.defaultUri}/search`;
+
+  private mostRecentUri = 'api/repairnotes';
+  private previewSearchUri = `${this.mostRecentUri}/search`;
 
   constructor(
     private logger: Logger,
@@ -34,6 +34,10 @@ export class RepairNoteService {
 
   searchRepairNote(term: string): Observable<RepairNote | null> {
     this.logger.unitOfWork(`Search for a repair note by id ${term}`);
+
+    if (!term.trim()) {
+      return of(null);
+    }
     const params = new HttpParams().set('term', term);
 
     return this.http
@@ -55,6 +59,10 @@ export class RepairNoteService {
 
   previewSearchRepairNote(term: string): Observable<RepairNote[]> {
     this.logger.unitOfWork(`Preview repair notes for id:${term}`);
+
+    if (!term.trim()) {
+      return of([]);
+    }
 
     const params = new HttpParams().set('term', term);
     return this.http

@@ -6,23 +6,32 @@ import { RepairNoteService } from '../repair-note.service';
 import { RepairNoteIndexComponent } from './repair-note-index.component';
 
 describe('RepairNoteIndexComponent', () => {
-  let component: RepairNoteIndexComponent;
-  let repairNoteService: RepairNoteService;
+  let repairNoteIndexComponent: RepairNoteIndexComponent;
+  let repairNoteServiceSpy: jasmine.SpyObj<RepairNoteService>;
   let fixture: ComponentFixture<RepairNoteIndexComponent>;
 
-  beforeEach(async () => {
-    await TestBed
-      .configureTestingModule({ declarations: [RepairNoteIndexComponent] })
-      .compileComponents();
+  beforeEach(() => {
+    TestBed
+      .configureTestingModule({
+        providers: [
+          RepairNoteIndexComponent,
+          {
+          provide: RepairNoteService,
+          useValue: jasmine.createSpyObj(RepairNoteService, ['getMostRecentRepairNotes'])
+        }]
+      });
 
-    repairNoteService = TestBed.inject(RepairNoteService);
-    fixture = TestBed.createComponent(RepairNoteIndexComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture = TestBed.createComponent(RepairNoteIndexComponent);
+    // fixture.detectChanges();
+
+    // component = fixture.componentInstance;
+
+    repairNoteServiceSpy = TestBed.inject(RepairNoteService) as jasmine.SpyObj<RepairNoteService>;
+    repairNoteIndexComponent = TestBed.inject(RepairNoteIndexComponent);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(repairNoteIndexComponent).toBeTruthy();
   });
 
   it('loadMostRecent should return a list of repair notes ', () => {
@@ -30,10 +39,10 @@ describe('RepairNoteIndexComponent', () => {
       { id: 'RPT001', capturer: 'Albert Spangler', lines: [{ partNumber: 'PLC10', quantity: 2 }] },
       { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
     ];
-    spyOn(repairNoteService, 'getMostRecentRepairNotes').and.returnValue(of(expectedResult));
+    repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
 
-    expect(component.repairNotes).toEqual(expectedResult);
-    expect(component.displayRepairNote).toEqual(true);
-    expect(component.selectedRepairNote).toEqual(expectedResult[0]);
+    expect(repairNoteIndexComponent.repairNotes).toEqual(expectedResult);
+    expect(repairNoteIndexComponent.displayRepairNote).toEqual(true);
+    expect(repairNoteIndexComponent.selectedRepairNote).toEqual(expectedResult[0]);
   });
 });

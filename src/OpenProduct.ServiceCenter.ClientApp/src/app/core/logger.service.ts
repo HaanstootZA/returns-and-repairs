@@ -10,18 +10,21 @@ export class Logger {
   constructor() { }
 
   public unitOfWork(message: string): void {
-
+    console.log(message);
   }
 
   public threadSensitive(message: string): void {
+    console.log(message);
 
   }
 
   public behaviour(message: string): void {
+    console.log(message);
 
   }
 
   public debug(message: string): void {
+    console.log(message);
 
   }
 
@@ -30,24 +33,24 @@ export class Logger {
       this.debug(`${target} returned no result`);
       return;
     }
-    
+
     this.debug(`${target} returned successfuly`);
   }
 
   public expectedError(message: string, error?: Error): void {
-
+    console.log(message);
   }
 
   public resolveError(message: string, error: Error): void {
-
+    console.log(message);
   }
 
   public failure(message: string, error: Error): void {
-
+    console.log(message);
   }
 
   public crash(message: string, error: Error): void {
-
+    console.log(message);
   }
 
   public handleError<T>(operation = 'operation'): OperatorFunction<T, T> {

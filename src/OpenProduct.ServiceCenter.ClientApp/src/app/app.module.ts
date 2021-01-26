@@ -20,11 +20,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
   imports: [
     BrowserModule,
     CoreModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
     AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     RepairNotesModule,
     DashboardModule
   ],
