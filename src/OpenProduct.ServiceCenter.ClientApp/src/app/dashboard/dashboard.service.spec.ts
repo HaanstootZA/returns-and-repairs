@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { RepairNoteStats } from './models/repair-note-stats';
 import { DashboardService } from './dashboard.service';
 
-describe('DashboardserviceService', () => {
+describe('DashboardService', () => {
   let testService: DashboardService;
   let httpTestingController: HttpTestingController;
 

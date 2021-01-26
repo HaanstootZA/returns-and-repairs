@@ -5,8 +5,8 @@
 </nav>
 
 <ul class="preview">
-    <li *ngFor="let repairNote of repairNotes">
-        <span>{{repairNote.id}}</span> {{repairNote.capturer}}
+    <li *ngFor="let repairNote of repairNotes" (click)="onSelect(repairNote)">
+        <div><span>{{repairNote.id}}</span> {{repairNote.capturer}}</div>
     </li>
 </ul>
 

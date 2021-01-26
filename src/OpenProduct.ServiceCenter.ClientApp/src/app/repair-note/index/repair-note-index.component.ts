@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RepairNoteService } from '../repair-note.service';
 import { RepairNote, RepairNoteLine } from '../models/repair-note';
 import { Logger } from 'src/app/core/logger.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'rnt-index',
@@ -27,7 +28,23 @@ export class RepairNoteIndexComponent implements OnInit {
 
   private loadMostRecent(): void {
     this.repairNoteService
-    .getMostRecentRepairNotes()
-    .subscribe((result: RepairNote[]) => this.repairNotes = result);
+      .getMostRecentRepairNotes()
+      .subscribe((result: RepairNote[]) => {
+        this.repairNotes = result;
+        if (result && result.length > 0) {
+          this.displayRepairNote = true;
+          this.selectedRepairNote = result[0];
+        }
+      });
+  }
+
+  public onSelect(repairNote: RepairNote): void {
+    if (!this.repairNotes.find(r => r.id === repairNote.id)) {
+      this.displayRepairNote = false;
+      return;
+    }
+
+    this.displayRepairNote = true;
+    this.selectedRepairNote = repairNote;
   }
 }

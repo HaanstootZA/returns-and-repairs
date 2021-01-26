@@ -6,9 +6,9 @@ import { RepairNoteService } from '../repair-note.service';
 import { RepairNoteIndexComponent } from './repair-note-index.component';
 
 describe('RepairNoteIndexComponent', () => {
-  let repairNoteIndexComponent: RepairNoteIndexComponent;
+  //let repairNoteIndexComponent: RepairNoteIndexComponent;
   let repairNoteServiceSpy: jasmine.SpyObj<RepairNoteService>;
-  let fixture: ComponentFixture<RepairNoteIndexComponent>;
+  //let fixture: ComponentFixture<RepairNoteIndexComponent>;
 
   beforeEach(() => {
     TestBed
@@ -16,9 +16,9 @@ describe('RepairNoteIndexComponent', () => {
         providers: [
           RepairNoteIndexComponent,
           {
-          provide: RepairNoteService,
-          useValue: jasmine.createSpyObj(RepairNoteService, ['getMostRecentRepairNotes'])
-        }]
+            provide: RepairNoteService,
+            useValue: jasmine.createSpyObj(RepairNoteService, ['getMostRecentRepairNotes'])
+          }]
       });
 
     // fixture = TestBed.createComponent(RepairNoteIndexComponent);
@@ -27,22 +27,52 @@ describe('RepairNoteIndexComponent', () => {
     // component = fixture.componentInstance;
 
     repairNoteServiceSpy = TestBed.inject(RepairNoteService) as jasmine.SpyObj<RepairNoteService>;
-    repairNoteIndexComponent = TestBed.inject(RepairNoteIndexComponent);
   });
 
   it('should create', () => {
+    const repairNoteIndexComponent = TestBed.inject(RepairNoteIndexComponent);
     expect(repairNoteIndexComponent).toBeTruthy();
   });
 
-  it('loadMostRecent should return a list of repair notes ', () => {
+  it('loadMostRecent should return a list of repair notes', () => {
     const expectedResult: RepairNote[] = [
       { id: 'RPT001', capturer: 'Albert Spangler', lines: [{ partNumber: 'PLC10', quantity: 2 }] },
       { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
     ];
     repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
+    const currentTestInstance = TestBed.inject(RepairNoteIndexComponent);
+    currentTestInstance.ngOnInit();
 
-    expect(repairNoteIndexComponent.repairNotes).toEqual(expectedResult);
-    expect(repairNoteIndexComponent.displayRepairNote).toEqual(true);
-    expect(repairNoteIndexComponent.selectedRepairNote).toEqual(expectedResult[0]);
+    expect(currentTestInstance.repairNotes).toEqual(expectedResult);
+    expect(currentTestInstance.displayRepairNote).toEqual(true);
+    expect(currentTestInstance.selectedRepairNote).toEqual(expectedResult[0]);
+  });
+
+  it('onSelect should change the selected repair note', () => {
+    const expectedResult: RepairNote[] = [
+      { id: 'RPT001', capturer: 'Albert Spangler', lines: [{ partNumber: 'PLC10', quantity: 2 }] },
+      { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
+    ];
+    repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
+    const currentTestInstance = TestBed.inject(RepairNoteIndexComponent);
+    currentTestInstance.ngOnInit();
+    currentTestInstance.onSelect(expectedResult[1]);
+
+    expect(currentTestInstance.displayRepairNote).toEqual(true);
+    expect(currentTestInstance.selectedRepairNote).toEqual(expectedResult[1]);
+  });
+
+  it('onSelect should unselect the repair note when it is empty or invalid', () => {
+    const expectedResult: RepairNote[] = [
+      { id: 'RPT001', capturer: 'Albert Spangler', lines: [{ partNumber: 'PLC10', quantity: 2 }] },
+      { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
+    ];
+    repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
+    const currentTestInstance = TestBed.inject(RepairNoteIndexComponent);
+    currentTestInstance.ngOnInit();
+    currentTestInstance.onSelect({id: '', capturer: '', lines: []});
+
+    expect(currentTestInstance.displayRepairNote).toEqual(false);
+    expect(currentTestInstance.selectedRepairNote).toEqual(expectedResult[0]);
   });
 });
