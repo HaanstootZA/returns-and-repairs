@@ -1,6 +1,6 @@
 .app-title {
-  background-color: #CBE0C1;
-  color: #48812C;
+  background-color: var(--base-tertiary);
+  color: var(--tertiary-3);
   margin: 0;
   padding: 5px 0px;
   font-size: 70px;
@@ -17,7 +17,7 @@ nav.menu {
   font-size: 50px;
   font-weight: 600;
   margin: 0px 0px 10px 0px;
-  background-color: #782956;
+  background-color: var(--secondary-3);
   padding: 0px, 10px;
 }
 
@@ -32,17 +32,17 @@ nav.menu a {
   padding: 10px 10px;
   text-decoration: none;
   margin: 0px;
-  color: #DFDFDF;
+  color: var(--secondary-1);
   display: table-cell;
   text-align: center;
   vertical-align: middle;
 }
 
 nav.menu a.activeLink {
-  background-color: #260E1B;
+  background-color: var(--secondary-4);
 }
 
 nav.menu a:hover {
-  color: #FFE9F5;
-  background-color: #D1B5C5;
+  color: var(--secondary-3);
+  background-color:var(--base-secondary);
 }
