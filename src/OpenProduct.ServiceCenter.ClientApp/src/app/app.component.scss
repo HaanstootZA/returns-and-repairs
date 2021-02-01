@@ -1,32 +1,48 @@
-.header {
-  background-color: #9933cc;
-  color: #ffffff;
-  padding: 15px;
+.app-title {
+  background-color: #CBE0C1;
+  color: #48812C;
+  margin: 0;
+  padding: 5px 0px;
+  font-size: 70px;
+  text-align: center;
+  font-style: bold;
+  font-family: "lucida console";
+  text-transform: uppercase;
 }
 
-nav {
-  background-color: #039be5;
-  color: #ffffff;
+nav.menu {
+  width: 100%;
+  left: 10%;
+  height: 45px;
+  font-size: 50px;
+  font-weight: 600;
+  margin: 0px 0px 10px 0px;
+  background-color: #782956;
+  padding: 0px, 10px;
+}
 
-  a {
-    padding: 5px 10px;
-    text-decoration: none;
-    border-color: #334953;
-    display: inline-block;
+nav.menu div {
+  display: table;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
 
-    :visited,
-    :link,
-    :any-link,
-    :-webkit-any-link {
-      color: antiquewhite;
-    }
+nav.menu a {
+  padding: 10px 10px;
+  text-decoration: none;
+  margin: 0px;
+  color: #DFDFDF;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
 
-    :hover {
-      color: #ffffff;
-      background-color: #cfd8dc;
-    }
-    .active {
-      color: #039be5;
-    }
-  }
+nav.menu a.activeLink {
+  background-color: #260E1B;
+}
+
+nav.menu a:hover {
+  color: #FFE9F5;
+  background-color: #D1B5C5;
 }
