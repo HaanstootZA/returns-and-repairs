@@ -1,6 +1,5 @@
 <nav>
     <a routerLink="/repair-note/capture" routerLinkActive="activebutton">Capture Repair Note</a>
-    <a routerLink="/repair-note/detail" routerLinkActive="activebutton">View Repair Note</a>
     <a routerLink="/repair-note/search" routerLinkActive="activebutton">Search Repair Note</a>
 </nav>
 
@@ -12,4 +11,5 @@
 
 <div *ngIf="(displayRepairNote)">
     <rnt-repair-note [repairNote]="selectedRepairNote"></rnt-repair-note>
+    <!-- <a routerLink="/repair-note/detail" routerLinkActive="activebutton" [repairNote]="selectedRepairNote">View Repair Note</a> -->
 </div>
