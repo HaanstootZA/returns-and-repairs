@@ -1,6 +1,6 @@
 .app-title {
-  background-color: var(--base-tertiary);
-  color: var(--tertiary-3);
+  background-color: var(--tertiary-3);
+  color: var(--tertiary-1);
   margin: 0;
   padding: 5px 0px;
   font-size: 70px;
@@ -10,39 +10,40 @@
   text-transform: uppercase;
 }
 
-nav.menu {
-  width: 100%;
-  left: 10%;
-  height: 45px;
-  font-size: 50px;
-  font-weight: 600;
-  margin: 0px 0px 10px 0px;
-  background-color: var(--secondary-3);
-  padding: 0px, 10px;
-}
+nav {
+  &.menu {
+    width: 100%;
+    left: 10%;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0px 0px 10px 0px;
+    background-color: var(--secondary-3);
 
-nav.menu div {
-  display: table;
-  margin: 0px;
-  padding: 0px;
-  height: 100%;
-}
+    div {
+      display: table;
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
 
-nav.menu a {
-  padding: 10px 10px;
-  text-decoration: none;
-  margin: 0px;
-  color: var(--secondary-1);
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-}
+      a {
+        padding: 10px 10px;
+        text-decoration: none;
+        margin: 0px;
+        color: var(--secondary-1);
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
 
-nav.menu a.activeLink {
-  background-color: var(--secondary-4);
-}
+        &:hover {
+          color: var(--secondary-3);
+          background-color: var(--secondary);
+        }
 
-nav.menu a:hover {
-  color: var(--secondary-3);
-  background-color:var(--base-secondary);
+        &.activeLink {
+          background-color: var(--secondary-4);
+        }
+      }
+    }
+  }
 }
