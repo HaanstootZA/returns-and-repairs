@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/repair-notes/dashboard.component';
-import { RepairNoteDetailComponent } from './repair-note/detail/repair-note-detail.component';
+import { RepairNoteIndexComponent } from './repair-note/repair-note-index.component';
+import { RepairNoteSummaryComponent } from './repair-note/home/repair-note-summary.component';
 import { RepairNoteCaptureComponent } from './repair-note/capture/repair-note-capture.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RepairNoteIndexComponent } from './repair-note/index/repair-note-index.component';
 import { RepairNoteSearchComponent } from './repair-note/search/repair-note-search.component';
+import { DashboardComponent } from './dashboard/repair-notes/dashboard.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: 'repair-note/index', pathMatch: 'full' },
-  { path: 'repair-note', redirectTo: 'repair-note/index', pathMatch: 'full' },
-  { path: 'repair-note/detail', component: RepairNoteDetailComponent },
-  { path: 'repair-note/capture', component: RepairNoteCaptureComponent },
-  { path: 'repair-note/search', component: RepairNoteSearchComponent },
-  { path: 'repair-note/index', component: RepairNoteIndexComponent },
-
+  { path: '', redirectTo: 'repair-note', pathMatch: 'full' },
+  {
+    path: 'repair-note', component: RepairNoteIndexComponent,
+    children: [
+      { path: '', redirectTo: 'summary', pathMatch: 'full' },
+      { path: 'summary', component: RepairNoteSummaryComponent },
+      { path: 'capture', component: RepairNoteCaptureComponent },
+      { path: 'search', component: RepairNoteSearchComponent }
+    ]
+  },
   { path: 'dashboard/repair-notes', component: DashboardComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

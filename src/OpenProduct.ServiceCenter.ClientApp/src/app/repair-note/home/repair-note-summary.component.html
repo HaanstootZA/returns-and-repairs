@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="block-content view-items">
+        <h3>Most Recent Repair Notes</h3>
+        <ul>
+            <li *ngFor="let repairNote of repairNotes" (click)="onSelect(repairNote)"
+                [class.selected]="repairNote === selectedRepairNote"
+            >{{repairNote.id}} - {{repairNote.capturer}}</li>
+        </ul>
+    </div>
+
+    <div class="block-content selected-item" *ngIf="(displayRepairNote)">
+        <h3>Selected Repair Note</h3>
+        <rnt-detail [repairNote]="selectedRepairNote"></rnt-detail>
+    </div>
+</div>

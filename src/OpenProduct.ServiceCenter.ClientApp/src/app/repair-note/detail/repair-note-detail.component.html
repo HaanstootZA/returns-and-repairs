@@ -1,14 +1,19 @@
-<h2>View Repair Note</h2>
-<div class="detail">
-    <div class="id"><span>Id: </span>{{repairNote.id}}</div>
-    <div class="capturer"><span>Capturer: </span>{{repairNote.capturer}}</div>
+<div>
+    <h4>Captured Details</h4>
+    <div class="header">
+        <div class="heading"><label>Id</label>{{repairNote.id}}</div>
+        <div class="heading"><label>Capturer</label>{{repairNote.capturer}}</div>
+    </div>
+
     <div class="lines">
-        <h3>Repair Note Lines</h3>
+        <h4>Repair Note Lines</h4>
         <ul>
             <li *ngFor="let line of repairNote.lines" (click)="selectLine(line)"
                 [class.selected]="line === selectedLine">
-                <div class="line-part"><span>Part Number: </span>{{line.partNumber}}</div>
-                <div class="line-quantity"><span>Quantity: </span>{{line.quantity}}</div>
+                <div>
+                    <div class="col-left"><label>Part Number</label>{{line.partNumber}}</div>
+                    <div class="col-right"><label>Quantity</label>{{line.quantity}}</div>
+                </div>
             </li>
         </ul>
     </div>

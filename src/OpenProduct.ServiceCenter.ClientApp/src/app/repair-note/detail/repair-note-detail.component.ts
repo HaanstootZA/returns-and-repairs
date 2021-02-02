@@ -6,7 +6,7 @@ import { RepairNote, RepairNoteLine } from '../models/repair-note';
 import { RepairNoteService } from '../repair-note.service';
 
 @Component({
-  selector: 'rnt-repair-note',
+  selector: 'rnt-detail',
   templateUrl: './repair-note-detail.component.html',
   styleUrls: ['./repair-note-detail.component.scss']
 })

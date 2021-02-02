@@ -3,25 +3,25 @@ import { of } from 'rxjs';
 import { RepairNote } from '../models/repair-note';
 import { RepairNoteService } from '../repair-note.service';
 
-import { RepairNoteIndexComponent } from './repair-note-index.component';
+import { RepairNoteSummaryComponent } from './repair-note-summary.component';
 
-describe('RepairNoteIndexComponent', () => {
-  //let repairNoteIndexComponent: RepairNoteIndexComponent;
+describe('RepairNoteSummaryComponent', () => {
+  //let RepairNoteSummaryComponent: RepairNoteSummaryComponent;
   let repairNoteServiceSpy: jasmine.SpyObj<RepairNoteService>;
-  //let fixture: ComponentFixture<RepairNoteIndexComponent>;
+  //let fixture: ComponentFixture<RepairNoteSummaryComponent>;
 
   beforeEach(() => {
     TestBed
       .configureTestingModule({
         providers: [
-          RepairNoteIndexComponent,
+          RepairNoteSummaryComponent,
           {
             provide: RepairNoteService,
             useValue: jasmine.createSpyObj(RepairNoteService, ['getMostRecentRepairNotes'])
           }]
       });
 
-    // fixture = TestBed.createComponent(RepairNoteIndexComponent);
+    // fixture = TestBed.createComponent(RepairNoteSummaryComponent);
     // fixture.detectChanges();
 
     // component = fixture.componentInstance;
@@ -30,8 +30,8 @@ describe('RepairNoteIndexComponent', () => {
   });
 
   it('should create', () => {
-    const repairNoteIndexComponent = TestBed.inject(RepairNoteIndexComponent);
-    expect(repairNoteIndexComponent).toBeTruthy();
+    const repairNoteSummaryComponent = TestBed.inject(RepairNoteSummaryComponent);
+    expect(repairNoteSummaryComponent).toBeTruthy();
   });
 
   it('loadMostRecent should return a list of repair notes', () => {
@@ -40,7 +40,7 @@ describe('RepairNoteIndexComponent', () => {
       { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
     ];
     repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
-    const currentTestInstance = TestBed.inject(RepairNoteIndexComponent);
+    const currentTestInstance = TestBed.inject(RepairNoteSummaryComponent);
     currentTestInstance.ngOnInit();
 
     expect(currentTestInstance.repairNotes).toEqual(expectedResult);
@@ -54,7 +54,7 @@ describe('RepairNoteIndexComponent', () => {
       { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
     ];
     repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
-    const currentTestInstance = TestBed.inject(RepairNoteIndexComponent);
+    const currentTestInstance = TestBed.inject(RepairNoteSummaryComponent);
     currentTestInstance.ngOnInit();
     currentTestInstance.onSelect(expectedResult[1]);
 
@@ -68,7 +68,7 @@ describe('RepairNoteIndexComponent', () => {
       { id: 'RPT001', capturer: 'Sam Vimes', lines: [{ partNumber: 'PLC10', quantity: 4 }, { partNumber: 'BLM01', quantity: 1 }] }
     ];
     repairNoteServiceSpy.getMostRecentRepairNotes.and.returnValue(of(expectedResult));
-    const currentTestInstance = TestBed.inject(RepairNoteIndexComponent);
+    const currentTestInstance = TestBed.inject(RepairNoteSummaryComponent);
     currentTestInstance.ngOnInit();
     currentTestInstance.onSelect({id: '', capturer: '', lines: []});
 

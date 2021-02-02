@@ -1,15 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RepairNoteService } from '../repair-note.service';
-import { RepairNote, RepairNoteLine } from '../models/repair-note';
+import { RepairNote } from '../models/repair-note';
 import { Logger } from 'src/app/core/logger.service';
-import { of } from 'rxjs';
 
 @Component({
-  selector: 'rnt-index',
-  templateUrl: './repair-note-index.component.html',
-  styleUrls: ['./repair-note-index.component.scss']
+  selector: 'rnt-summary',
+  templateUrl: './repair-note-summary.component.html',
+  styleUrls: ['./repair-note-summary.component.scss']
 })
-export class RepairNoteIndexComponent implements OnInit {
+export class RepairNoteSummaryComponent implements OnInit {
   @Input() public repairNotes: RepairNote[] = [];
   @Input() public displayRepairNote = false;
   @Input() public selectedRepairNote: RepairNote = {

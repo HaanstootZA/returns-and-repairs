@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-repair-note-capture',
+  selector: 'rnt-capture',
   templateUrl: './repair-note-capture.component.html',
   styleUrls: ['./repair-note-capture.component.scss']
 })

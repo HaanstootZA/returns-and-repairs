@@ -1,7 +1,57 @@
-label {
-    display: block
+div {
+  height: 100%;
+  &.header {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1px 0px;
+    padding: 0px;
+  }
 
-    span {
-        background-color: gray
+  &.heading {
+    color: var(--primary-4);
+    background-color: var(--secondary-2);
+  }
+
+  label {
+    color: var(--primary-4);
+    background-color: var(--primary-2);
+    display: inline-block;
+    text-align: right;
+    padding: 3px 10px;
+    margin-right: 10px;
+    min-width: 120px;
+    max-width: 150px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 1px 0px;
+
+    height: auto;
+    max-height: 100px;
+    overflow: auto;
+
+    li {
+      color: var(--primary-4);
+      background-color: var(--secondary-2);
+      padding: 0px;
+      margin: 0px;
+      height: 100%;
+
+      div {
+        display: inline-block;
+        width: 100%;
+
+        &.col-left {
+          width: 60%;
+        }
+
+        &.col-right {
+          width: auto;
+        }
+      }
     }
+  }
 }
