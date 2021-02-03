@@ -21,6 +21,5 @@ export class RepairNoteSearchComponent implements OnInit {
   }
 
   onSearch(value: string): void {
-
   }
 }
