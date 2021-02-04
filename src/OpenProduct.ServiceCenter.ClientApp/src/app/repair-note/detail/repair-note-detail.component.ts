@@ -28,15 +28,14 @@ export class RepairNoteDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.setRepairNoteByid(params.id);
+      this.setRepairNoteById(params.id);
     });
   }
 
-  setRepairNoteByid(id: string): void {
-    this.repairNoteService.getRepairNote(id).subscribe(
-      (repairNote: RepairNote) => { this.repairNote = repairNote; },
-      (error) => {},
-      () => {});
+  setRepairNoteById(id: string): void {
+    this.repairNoteService
+      .getRepairNote(id)
+      .subscribe((repairNote: RepairNote) => { this.repairNote = repairNote; });
   }
 
   selectLine(line: RepairNoteLine): void {

@@ -13,7 +13,7 @@ export class RepairNoteService {
   private defaultUri = 'api/repairNote';
   private searchUri = `${this.defaultUri}/search`;
 
-  private mostRecentUri = 'api/repairnotes';
+  private mostRecentUri = 'api/repairNotes';
   private previewSearchUri = `${this.mostRecentUri}/search`;
 
   constructor(
@@ -28,7 +28,7 @@ export class RepairNoteService {
     return this.http
       .get<RepairNote>(this.defaultUri, { params })
       .pipe(
-        tap((result: RepairNote) => this.logger.debugResponse(result, this.defaultUri)),
+        tap((result: RepairNote) => this.logger.responseBreakpoint(result, this.defaultUri)),
         catchError(this.logger.handleError<RepairNote>('getRepairNote')));
   }
 
@@ -36,6 +36,7 @@ export class RepairNoteService {
     this.logger.unitOfWork(`Search for a repair note by id ${term}`);
 
     if (!term.trim()) {
+      this.logger.breakpoint('No term has ben defined, skipping search');
       return of(null);
     }
     const params = new HttpParams().set('term', term);
@@ -43,7 +44,7 @@ export class RepairNoteService {
     return this.http
       .get<RepairNote>(this.searchUri, { params })
       .pipe(
-        tap((result: RepairNote) => this.logger.debugResponse(result, this.searchUri)),
+        tap((result: RepairNote) => this.logger.responseBreakpoint(result, this.searchUri)),
         catchError(this.logger.handleError<RepairNote>('searchRepairNote')));
   }
 
@@ -52,7 +53,7 @@ export class RepairNoteService {
 
     return this.http.get<RepairNote[]>(this.mostRecentUri)
       .pipe(
-        tap((result: RepairNote[]) => this.logger.debugResponse(result, this.mostRecentUri)),
+        tap((result: RepairNote[]) => this.logger.responseBreakpoint(result, this.mostRecentUri)),
         catchError(this.logger.handleError<RepairNote[]>('getMostRecentRepairNotes')));
   }
 
@@ -60,15 +61,18 @@ export class RepairNoteService {
     this.logger.unitOfWork(`Preview repair notes for id:${term}`);
 
     if (!term.trim()) {
+      this.logger.breakpoint('No term has ben defined, skipping search');
       return of([]);
     }
 
     const params = new HttpParams().set('term', term);
+
+    this.logger.breakpoint('No term has ben defined, skipping search');
     return this.http
       .get<RepairNote[]>(this.previewSearchUri, { params })
       .pipe(
         (r) => r ?? [] as RepairNote[],
-        tap((result: RepairNote[]) => this.logger.debugResponse(result, this.previewSearchUri)),
+        tap((result: RepairNote[]) => this.logger.responseBreakpoint(result, this.previewSearchUri)),
         catchError(this.logger.handleError<RepairNote[]>('previewSearchRepairNote')));
   }
 }

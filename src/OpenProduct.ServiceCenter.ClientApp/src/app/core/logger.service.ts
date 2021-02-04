@@ -18,23 +18,23 @@ export class Logger {
 
   }
 
-  public behaviour(message: string): void {
+  public expectedBehaviour(message: string): void {
     console.log(message);
 
   }
 
-  public debug(message: string): void {
+  public breakpoint(message: string): void {
     console.log(message);
 
   }
 
-  public debugResponse<TResult>(result: TResult | TResult[], target: string): void {
+  public responseBreakpoint<TResult>(result: TResult | TResult[], target: string): void {
     if (result === null || (result instanceof Array && result.length === 0)) {
-      this.debug(`${target} returned no result`);
+      this.breakpoint(`${target} returned no result`);
       return;
     }
 
-    this.debug(`${target} returned successfuly`);
+    this.breakpoint(`${target} returned successfully`);
   }
 
   public expectedError(message: string, error?: Error): void {

@@ -26,6 +26,8 @@ export class RepairNoteSummaryComponent implements OnInit {
   }
 
   private loadMostRecent(): void {
+    this.logger.expectedBehaviour('Loading the most recently captured repair notes.');
+
     this.repairNoteService
       .getMostRecentRepairNotes()
       .subscribe((result: RepairNote[]) => {
@@ -38,7 +40,10 @@ export class RepairNoteSummaryComponent implements OnInit {
   }
 
   public onSelect(repairNote: RepairNote): void {
+    this.logger.unitOfWork('Select a repair note.');
+
     if (!this.repairNotes.find(r => r.id === repairNote.id)) {
+      this.logger.breakpoint('An invalid repair note has been selected hiding the repair note details.');
       this.displayRepairNote = false;
       return;
     }
