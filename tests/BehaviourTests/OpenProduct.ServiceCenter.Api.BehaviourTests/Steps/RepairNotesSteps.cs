@@ -12,22 +12,33 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Steps
     {
         IRestClient restClient;
         IRestResponse<IEnumerable<RepairNote>> restResponse;
+        IRestRequest restRequest;
 
         [Given(@"A connection to the service center API")]
         public void GivenAConnectionToTheServiceCenterAPI()
         {
-            restClient = new RestClient("http://servicecenter.com/");
+#if DEBUG
+            this.restClient = new RestClient("https://localhost:44319");
+            this.restClient.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+#else
+            this.restClient = new RestClient("https://servicecenter.com");
+#endif
         }
-        
-        [When(@"I make a GET request to the Repair Notes Controller")]
-        public void WhenIMakeAGETRequestToTheRepairNotesController()
+
+        [When(@"I make a get request to the Repair Notes Controller")]
+        public void WhenIMakeAGetRequestToTheRepairNotesController()
         {
-            RestRequest restRequest = new RestRequest("api/RepairNotes", Method.GET, DataFormat.Json);
+            this.restRequest = new RestRequest("api/repairnotes", Method.GET, DataFormat.Json);
+        }
+
+        [Given(@"I have no arguments")]
+        public void GivenIHaveNoArguments()
+        {
             this.restResponse = restClient.Get<IEnumerable<RepairNote>>(restRequest);
         }
 
-        [Then(@"the API should return a list of existing repair notes")]
-        public void ThenTheAPIShouldReturnAListOfExistingRepairNotes()
+        [Then(@"the API should return a list of the most recent existing repair notes")]
+        public void ThenTheAPIShouldReturnAListOfTheMostRecentExistingRepairNotes()
         {
             Assert.IsNotNull(restResponse);
             Assert.AreEqual(HttpStatusCode.OK, restResponse.StatusCode);

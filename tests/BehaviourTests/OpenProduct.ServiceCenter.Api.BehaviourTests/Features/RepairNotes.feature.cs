@@ -20,7 +20,7 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class RepairNotesFeature
+    public partial class RepairNotesTicket_NumberFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -48,7 +48,7 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "RepairNotes", "\t As a service center employee to to support clients I need to interact with repa" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "RepairNotes Ticket-Number", "\t As a service center employee to to support clients I need to interact with repa" +
                     "ir notes", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -64,9 +64,9 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Features
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "RepairNotes")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "RepairNotes Ticket-Number")))
             {
-                global::OpenProduct.ServiceCenter.Api.BehaviourTests.Features.RepairNotesFeature.FeatureSetup(null);
+                global::OpenProduct.ServiceCenter.Api.BehaviourTests.Features.RepairNotesTicket_NumberFeature.FeatureSetup(null);
             }
         }
         
@@ -94,7 +94,7 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Features
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Retrieve a list of the most recent repair notes")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RepairNotes")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "RepairNotes Ticket-Number")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ViewRepairNotes")]
         public virtual void RetrieveAListOfTheMostRecentRepairNotes()
         {
@@ -126,10 +126,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("A connection to the service center API", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.When("I make a GET request to the Repair Notes Controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I make a get request to the Repair Notes Controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then("the API should return a list of existing repair notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I have no arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.Then("the API should return a list of the most recent existing repair notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

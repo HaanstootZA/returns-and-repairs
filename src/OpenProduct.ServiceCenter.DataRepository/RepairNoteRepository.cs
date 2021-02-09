@@ -17,7 +17,20 @@ namespace OpenProduct.ServiceCenter.DataRepository
 
         public IEnumerable<RepairNote> GetMostRecent()
         {
-            return new List<RepairNote>() { new RepairNote() };
+            return new RepairNote[] {
+                new RepairNote()
+                {
+                    Capturer = "Albert Spangler",
+                    Id = "RPT001",
+                    Lines = new RepairNoteLine[]
+                    {
+                        new RepairNoteLine
+                        {
+                            PartNumber = "GEN001",
+                            Quantity = 20
+                        }
+                    }
+                } };
         }
     }
 }

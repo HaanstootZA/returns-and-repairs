@@ -27,7 +27,7 @@ namespace OpenProduct.ServiceCenter.Api.Controllers
         public ActionResult<IEnumerable<RepairNote>> GetMostRecent()
         {
             this.logger.UnitOfWork("Finding a list of repair notes from the repository");
-            IEnumerable<RepairNote> result = repairNoteRepository.GetMostRecent();
+            IEnumerable<RepairNote> result = this.repairNoteRepository.GetMostRecent();
 
             return Ok(result);
         }

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://servicecenter.com:51012",
+      "applicationUrl": "http://localhost:51012",
       "sslPort": 44319
     }
   },
@@ -20,7 +20,6 @@
     "OpenProduct.ServiceCenter": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
