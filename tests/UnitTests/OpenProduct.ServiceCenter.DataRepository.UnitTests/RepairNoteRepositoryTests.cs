@@ -1,7 +1,10 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using OpenProduct.ServiceCenter.Core;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OpenProduct.ServiceCenter.DataRepository.UnitTests
 {
@@ -25,7 +28,9 @@ namespace OpenProduct.ServiceCenter.DataRepository.UnitTests
         public void TestGetMostRecent()
         {
             RepairNoteRepository testRepairNoteRepository = new RepairNoteRepository(Mock.Of<ILogger<RepairNoteRepository>>());
-            Assert.IsNotNull(testRepairNoteRepository.GetMostRecent());
+            IEnumerable<RepairNote> actualMostRecent = testRepairNoteRepository.GetMostRecent();
+            Assert.IsNotNull(actualMostRecent);
+            Assert.AreEqual(1, actualMostRecent.Count());
         }
     }
 }

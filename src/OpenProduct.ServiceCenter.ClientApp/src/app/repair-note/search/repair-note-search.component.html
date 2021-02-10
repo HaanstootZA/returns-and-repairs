@@ -1,5 +1,28 @@
 <div class="search">
-    <input #search type="text" class="search" placeholder="Repair Note Id" (keyup)="onKeyUp(search.value)"
-        (keyup.enter)="onSearch(search.value)" />
-    <button type="submit" class="search" onclick="onSearch(search.value)">Search</button>
+    <input #search type="text" class="search" placeholder="Repair Note Id" (keyup)="onKeyUp(search.value)" (keyup.enter)="onSearch(search.value)" />
+    <button type="submit" class="search" (click)="onSearch(search.value)">Search</button>
+    <div *ngIf="displayPreview">
+        <ul>
+            <li *ngFor="let repairNote of previewRepairNotes$ | async">
+                Repair Note Id - {{repairNote}}
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="foundRepairNotes">
+        <div class="block-content view-items">
+            <h3>Search Results</h3>
+            <ul>
+                <li *ngFor="let repairNote of foundRepairNotes" (click)="onSelect(repairNote)"
+                    [class.selected]="selectedRepairNote!.id === repairNote.id">
+                    {{repairNote.id}} - {{repairNote.capturer}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="block-content selected-item" *ngIf="selectedRepairNote">
+            <h3>Selected Repair Note</h3>
+            <rnt-detail [repairNote]="selectedRepairNote"></rnt-detail>
+        </div>
+    </div>
 </div>

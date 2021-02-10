@@ -10,18 +10,18 @@ import { RepairNote } from './models/repair-note';
   providedIn: 'root'
 })
 export class RepairNoteService {
-  private defaultUri = 'api/repairNote';
-  private searchUri = `${this.defaultUri}/search`;
+  private defaultUri = 'api/repairNotes';
 
-  private mostRecentUri = 'api/repairNotes';
-  private previewSearchUri = `${this.mostRecentUri}/search`;
+  private mostRecentUri = `${this.defaultUri}/mostRecent`;
+  private previewSearchUri = `${this.defaultUri}/previewSearch`;
+  private searchUri = `${this.defaultUri}/search`;
 
   constructor(
     private logger: Logger,
     private http: HttpClient) { }
 
 
-  getRepairNote(id: string): Observable<RepairNote> {
+  public getRepairNote(id: string): Observable<RepairNote> {
     this.logger.unitOfWork(`Find a repair note by id ${id}`);
 
     const params = new HttpParams().set('id', id);
@@ -32,23 +32,7 @@ export class RepairNoteService {
         catchError(this.logger.handleError<RepairNote>('getRepairNote')));
   }
 
-  searchRepairNote(term: string): Observable<RepairNote | null> {
-    this.logger.unitOfWork(`Search for a repair note by id ${term}`);
-
-    if (!term.trim()) {
-      this.logger.breakpoint('No term has ben defined, skipping search');
-      return of(null);
-    }
-    const params = new HttpParams().set('term', term);
-
-    return this.http
-      .get<RepairNote>(this.searchUri, { params })
-      .pipe(
-        tap((result: RepairNote) => this.logger.responseBreakpoint(result, this.searchUri)),
-        catchError(this.logger.handleError<RepairNote>('searchRepairNote')));
-  }
-
-  getMostRecentRepairNotes(): Observable<RepairNote[]> {
+  public getMostRecentRepairNotes(): Observable<RepairNote[]> {
     this.logger.unitOfWork('Get the most recent repair notes');
 
     return this.http.get<RepairNote[]>(this.mostRecentUri)
@@ -57,22 +41,26 @@ export class RepairNoteService {
         catchError(this.logger.handleError<RepairNote[]>('getMostRecentRepairNotes')));
   }
 
-  previewSearchRepairNote(term: string): Observable<RepairNote[]> {
-    this.logger.unitOfWork(`Preview repair notes for id:${term}`);
+  public searchRepairNote(repairNoteId: string): Observable<RepairNote[]> {
+    this.logger.unitOfWork(`Search for a repair note by id ${repairNoteId}`);
+    return this.searchRepairNotesInternal<RepairNote>(repairNoteId, this.searchUri, 'searchRepairNote');
+  }
 
-    if (!term.trim()) {
-      this.logger.breakpoint('No term has ben defined, skipping search');
+  public previewSearchRepairNote(repairNoteId: string): Observable<string[]> {
+    this.logger.unitOfWork(`Preview a search repair notes for id:${repairNoteId}`);
+    return this.searchRepairNotesInternal<string>(repairNoteId, this.previewSearchUri, 'previewSearchRepairNote');
+  }
+
+  private searchRepairNotesInternal<T>(repairNoteId: string, uri: string, callerMemberName: string): Observable<T[]> {
+    if (!repairNoteId.trim()) {
+      this.logger.breakpoint('No repair note id has ben defined, skipping search');
       return of([]);
     }
 
-    const params = new HttpParams().set('term', term);
-
+    const params = new HttpParams().set('id', repairNoteId);
     this.logger.breakpoint('No term has ben defined, skipping search');
-    return this.http
-      .get<RepairNote[]>(this.previewSearchUri, { params })
-      .pipe(
-        (r) => r ?? [] as RepairNote[],
-        tap((result: RepairNote[]) => this.logger.responseBreakpoint(result, this.previewSearchUri)),
-        catchError(this.logger.handleError<RepairNote[]>('previewSearchRepairNote')));
+    return this.http.get<T[]>(uri, { params })
+      .pipe(tap((result: T[]) => this.logger.responseBreakpoint(result, uri)))
+      .pipe(catchError(this.logger.handleError<T[]>(callerMemberName)));
   }
 }

@@ -22,7 +22,7 @@ namespace OpenProduct.ServiceCenter.Api.Controllers
             this.repairNoteRepository = repairNoteRepository ?? throw new ArgumentNullException(nameof(repairNoteRepository));
         }
 
-        [HttpGet]
+        [HttpGet("MostRecent", Name = "MostRecent")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<RepairNote>> GetMostRecent()
         {

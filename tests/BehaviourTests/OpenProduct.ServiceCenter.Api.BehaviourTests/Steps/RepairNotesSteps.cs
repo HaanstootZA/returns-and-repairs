@@ -34,6 +34,7 @@ namespace OpenProduct.ServiceCenter.Api.BehaviourTests.Steps
         [Given(@"I have no arguments")]
         public void GivenIHaveNoArguments()
         {
+            this.restRequest.Resource += "mostRecent";
             this.restResponse = restClient.Get<IEnumerable<RepairNote>>(restRequest);
         }
 
