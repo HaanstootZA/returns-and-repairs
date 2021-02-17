@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RepairNoteIndexComponent } from './repair-note/repair-note-index.component';
-import { RepairNoteSummaryComponent } from './repair-note/home/repair-note-summary.component';
+import { RepairNoteSummaryComponent } from './repair-note/summary/repair-note-summary.component';
 import { RepairNoteCaptureComponent } from './repair-note/capture/repair-note-capture.component';
 import { RepairNoteSearchComponent } from './repair-note/search/repair-note-search.component';
 import { DashboardComponent } from './dashboard/repair-notes/dashboard.component';
